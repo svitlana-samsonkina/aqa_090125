@@ -76,12 +76,12 @@ b) 9907 : 9     e) 7128 : 5
 c) 2789 : 5     f) 19224 : 9
 """
 print("Task 07")
-remainder_a = 8019%8
-remainder_b = 9907%9
-remainder_c = 2789%5
-remainder_d = 7248%6
-remainder_e = 7128%5
-remainder_f = 19224%9
+remainder_a = 8019 % 8
+remainder_b = 9907 % 9
+remainder_c = 2789 % 5
+remainder_d = 7248 % 6
+remainder_e = 7128 % 5
+remainder_f = 19224 % 9
 print(f"Остача від ділення 8019 на 8 дорівнює {remainder_a} \n"
       f"Остача від ділення 9907 на 9 дорівнює {remainder_b} \n"
       f"Остача від ділення 2789 на 5 дорівнює {remainder_c} \n"
