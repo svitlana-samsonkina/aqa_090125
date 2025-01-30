@@ -46,12 +46,13 @@ print("Множина всіх символів:", unique_chars)
 print("task 8")
 set_1 = {1, 2, 3, 4, 5}
 set_2 = {4, 6, 5, 10}
-logical_difference_1 = set_1 - set_2
-print("Елементи в set_1, але не в set_2:", logical_difference_1)
-logical_difference_2 = set_2 - set_1
-print("Елементи в set_2, але не в set_1:", logical_difference_2)
-logical_union = logical_difference_1.union(logical_difference_2)
-print("Об'єднана множина елементів, що не є спільними:", logical_union)
+# logical_difference_1 = set_1 - set_2
+# print("Елементи в set_1, але не в set_2:", logical_difference_1)
+# logical_difference_2 = set_2 - set_1
+# print("Елементи в set_2, але не в set_1:", logical_difference_2)
+# logical_union = logical_difference_1.union(logical_difference_2)
+# print("Об'єднана множина елементів, що не є спільними:", logical_union)
+print("Сума елементів, що не є спільними:", sum(set_1 ^ set_2))
 
 # task 9. Створіть два списки та обробіть їх так, щоб отримати сет, який
 # містить всі елементи з обох списків,  які зустрічаються тільки один раз.
