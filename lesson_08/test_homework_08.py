@@ -9,10 +9,12 @@ except ImportError:
 class TestSumNumbersInList(unittest.TestCase):
 
     def test_01_valid_input(self):
+        """" Тест на коректні вхідні дані """
         self.assertEqual(sum_numbers_in_list(["1,2,3", "4,0,6"]), [6, 10])
         self.assertEqual(sum_numbers_in_list(["1,2,3,4", "1,2,3,4,50"]), [10, 60])
 
     def test_02_invalid_strings(self):
+        """ Тест на некоректні типи даних всердині строки """
         self.assertEqual(
             sum_numbers_in_list(["1,2,3", "4/0,6", "asas7,8,9"]),
             [6, "Не можу це зробити!", "Не можу це зробити!"],
@@ -23,8 +25,10 @@ class TestSumNumbersInList(unittest.TestCase):
         )
 
     def test_03_non_string_elements(self):
+        """ Тест на некоректні типи даних всередині списку """
         self.assertEqual(
-            sum_numbers_in_list(["1,2,3", 7]), [6, "Не можу це зробити! AttributeError"]
+            sum_numbers_in_list(["1,2,3", 7]), 
+            [6, "Не можу це зробити! AttributeError"]
         )
         self.assertEqual(
             sum_numbers_in_list(["1,2,3,4", "1,2,3,4,50", sum, min(1, 2)]),
@@ -37,16 +41,19 @@ class TestSumNumbersInList(unittest.TestCase):
         )
 
     def test_04_empty_list(self):
+        """ Тест на порожній список """
         with self.assertRaises(ValueError):
             sum_numbers_in_list([])
 
     def test_05_non_list_input(self):
+        """ Тест на некоректний тип вхідних даних """
         with self.assertRaises(ValueError):
             sum_numbers_in_list("21")
         with self.assertRaises(ValueError):
             sum_numbers_in_list(3)
 
     def test_06_mixed_valid_invalid(self):
+        """ Тест на суміш коректних і некоректних даних """
         self.assertEqual(
             sum_numbers_in_list(
                 [
