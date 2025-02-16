@@ -90,9 +90,9 @@ def sum_numbers_in_list(strings) -> list:
     :return: Список сум чисел або повідомлення про помилки.
     """
     if not isinstance(strings, list):
-        raise ValueError("ValueError")
+        raise ValueError("A list of strings is expected!")
     if not strings:
-        raise ValueError("ValueError")
+        raise ValueError("The list cannot be empty! Please enter a value.")
 
     results = []
     
