@@ -1,9 +1,10 @@
 import unittest
+
+from homeworks import average_number, longest_word, calculate_total_cost, reverse_string, is_even
+
 """
 Функція, яка розрахує середнє арифметичне списку чисел.
 """
-from homeworks import average_number
-
 class TestAverageNumber(unittest.TestCase):
     def test_01_average_positive_numbers(self):
         self.assertEqual(average_number([5, 6, 7]), 6)
@@ -36,11 +37,10 @@ class TestAverageNumber(unittest.TestCase):
           
           with self.assertRaises(TypeError): # valid and invalid input values
             average_number("5", 56, 4)
+
 """ 
 Функція, яка приймає список слів та повертає найдовше слово у списку.
 """
-from homeworks import longest_word
-
 class TestLongestWord(unittest.TestCase):
     def test_01_longest_word(self):
         self.assertEqual(longest_word(["New York", "Los Angeles", "Kyiv", "Porto"]), "Los Angeles")
@@ -57,9 +57,6 @@ class TestLongestWord(unittest.TestCase):
     def test_05_longest_empty_string(self):
             self.assertEqual(longest_word(["New York", "", "Kyiv", "Porto"]), "New York")
 
-    def test_06_longest_empty_string(self):
-            self.assertEqual(longest_word(["New York", "", "Kyiv", "Porto"]), "New York")
-
     def test_07_longest_word_negative_inputs(self):
             with self.assertRaises(ValueError): # empty list
                 longest_word([])
@@ -73,8 +70,6 @@ class TestLongestWord(unittest.TestCase):
 """ 
 Функція обчислює загальну вартість замовлення.
 """
-from homeworks import calculate_total_cost
-
 class TestTotalCoast(unittest.TestCase):
     def test_01_total_coast(self):
         self.assertEqual(calculate_total_cost([
@@ -106,8 +101,6 @@ class TestTotalCoast(unittest.TestCase):
 """ 
 Функція, яка приймає рядок та повертає його у зворотному порядку.
 """
-from homeworks import reverse_string
-
 class TestReverseString(unittest.TestCase):
     def test_01_reverse_string(self):
         self.assertEqual(reverse_string("Прочитай цей рядок у зворотному порядку!"),
@@ -123,8 +116,6 @@ class TestReverseString(unittest.TestCase):
 """
 Функція перевіряє, чи є число парним.
 """
-from homeworks import is_even
-
 class TestIsEvenNumber(unittest.TestCase):
     def test_01_is_even_number(self):
         self.assertTrue(is_even(96))
@@ -136,7 +127,7 @@ class TestIsEvenNumber(unittest.TestCase):
         self.assertFalse(is_even(333))
         self.assertFalse(is_even(55))
 
-    def test_02_is_odd_number(self):
+    def test_02_is_even_missing_arguments(self):
          with self.assertRaises(TypeError):
             is_even()
 

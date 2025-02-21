@@ -1,12 +1,12 @@
 #task 1
-def average_number(numbers: int): 
+def average_number(numbers: list[int]) -> float: 
     """
     Функція, яка розрахує середнє арифметичне списку чисел.
     """
     return sum(numbers) / len(numbers) 
 
 # task 2
-def longest_word(words: str):
+def longest_word(words: list[str]) -> str:
     """ 
     Функція, яка приймає список слів та повертає найдовше слово у списку.
     """
@@ -42,7 +42,7 @@ if __name__ == "__main__":
 
 # Перевірка функцій 
 # task 1
-    nums = (5, 6, 7)
+    nums = [5, 6, 7]
     result = average_number(nums)
 
     print(f"Середнє арифметичне списку {nums} дорівнює {result}")
@@ -53,13 +53,13 @@ if __name__ == "__main__":
     print(f"Найдовше слово у списку: {longest_word(word_list)}")
 
 # task 3
-    order_list = ([
+    order_list = [
         ("Піца велика", 4, 274),
         ("Піца середня", 2, 218),
         ("Сік", 4, 35),
         ("Торт", 1, 350),
         ("Вода", 3, 21)
-    ])
+    ]
 
     total_price = calculate_total_cost(order_list)
 
