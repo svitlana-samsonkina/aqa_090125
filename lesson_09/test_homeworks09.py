@@ -98,8 +98,8 @@ class TestTotalCoast(unittest.TestCase):
             
         with self.assertRaises(TypeError): # negative number value
             calculate_total_cost([
-    ("Піца велика", 4, 250)
-    ("Піца середня",-2, 218),
+    ("Піца велика", 4, 274),
+    ("Піца середня", -2, 218),
     ("Сік", 4, 35)
 ])
             
