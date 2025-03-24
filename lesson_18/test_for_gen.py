@@ -30,12 +30,12 @@ def file_line_reader(file_path):
             yield line.strip()  # Використання генератора
 
 
-def test_data():
-    for i in range(1, 6):
-        yield f"Test case {i}"
+# def test_data():
+#     for i in range(1, 6):
+#         yield f"Test case {i}"
 
-# Використання у тестуванні
-for data in test_data():
-    print(f"Running test with: {data}")
+# # Використання у тестуванні
+# for data in test_data():
+#     print(f"Running test with: {data}")
 
 
