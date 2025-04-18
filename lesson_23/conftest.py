@@ -15,6 +15,8 @@ def get_regisered_user():
     }
     s = requests.Session()
     r = API.auth.signup(s, request_body=query_data)
+    if r.status_code != 201:
+        raise AttributeError(r.text)
     yield email, password
-    r = API.users.users(s)
+    API.users.users(s)
 

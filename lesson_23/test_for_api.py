@@ -1,9 +1,8 @@
-from hillel_api import API
+from hillel_api import API as api
 import requests
 import pytest
 
 
-api = API()
 s = requests.Session()
 
 
@@ -49,17 +48,18 @@ def test_logout():
     assert r_json["status"] == "ok", "Key 'status' is not ok"
 
 
-def test_sigin_delete_and_cant_resign():
+def test_sigin_delete_and_cant_resign(get_regisered_user):
     """E2E test example"""
     # Створення даних користувача для тестування
+    email, password = get_regisered_user
     user_data = {
-        "email": "qam0404@2022test.com",
-        "password": "Qam2608venv",
+        "email": email,
+        "password": password,
         "remember": False
     }
 
     # Автентифікація користувача
-    r = API.auth.signin(s, user_data)
+    r = api.auth.signin(s, user_data)
     r_json = r.json()
     
     # Перевірка успішності автентифікації
@@ -67,7 +67,7 @@ def test_sigin_delete_and_cant_resign():
     assert r_json["status"] == "ok", "Key 'status' is not ok"
 
     # Видалення користувача
-    r = API.users.users(s)
+    r = api.users.users(s)
     r_json = r.json()
     
     # Перевірка успішності видалення користувача
@@ -75,7 +75,7 @@ def test_sigin_delete_and_cant_resign():
     assert r_json["status"] == "ok", "Key 'status' is not ok"
 
     # Спроба повторного входу після видалення користувача (має бути помилка)
-    r = API.auth.signin(s, user_data)
+    r = api.auth.signin(s, user_data)
     r_json = r.json()
     
     # Перевірка невдалої спроби входу після видалення користувача
