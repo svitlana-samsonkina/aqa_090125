@@ -9,14 +9,20 @@ pipeline {
         }
         stage('Build and activate venv') {
             steps {
-                sh 'python3 -m venv venv'
-                sh 'source venv/bin/activate'
-                sh 'python3 -m pip install -r $WORKSPACE/requirements.txt'
+                sh '''
+                    python3 -m venv venv
+                    . venv/bin/activate
+                    pip install --upgrade pip
+                    pip install -r requirements.txt
+                '''
             }
         }
         stage('Tests') {
             steps {
-                sh 'pytest -s -v --junitxml=$WORKSPACE/report.xml'
+                sh '''
+                . venv/bin/activate
+                pytest -s -v --junitxml=report.xml
+                '''
                 junit 'report.xml'
             }
         }
