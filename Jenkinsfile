@@ -23,7 +23,7 @@ pipeline {
                 . venv/bin/activate
                 pytest -s -v --junitxml=$WORKSPACE/report.xml
                 '''
-                junit '$WORKSPACE/report.xml'
+                junit '**/report.xml'
             }
         }
     }
