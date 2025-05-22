@@ -6,6 +6,11 @@ ENV PYTHONPATH=/app
 
 COPY . .
 
-RUN pip install --no-cache-dir -r requirements.txt
+RUN apt-get update && \
+    apt-get install -y curl zip unzip && \
+    pip install --no-cache-dir -r requirements.txt
 
-CMD command: ["pytest",  "-v",  "tests"]
+COPY entrypoint.sh /app/entrypoint.sh
+RUN chmod +x /app/entrypoint.sh
+
+ENTRYPOINT ["/app/entrypoint.sh"]
