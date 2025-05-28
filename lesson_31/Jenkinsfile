@@ -5,15 +5,11 @@ pipeline {
         }
     }
 
-    environment {
-        VENV_DIR = "${env.WORKSPACE}/venv"
-    }
-
     stages {
         stage('Checkout') {
             steps {
-                // Замість "checkout scm"
                 sh '''
+                    rm -rf repo
                     git clone https://github.com/svitlana-samsonkina/aqa_090125.git repo
                     cd repo
                     git checkout homework31
@@ -25,8 +21,8 @@ pipeline {
             steps {
                 sh '''
                     cd repo
-                    python -m venv ${VENV_DIR}
-                    . ${VENV_DIR}/bin/activate
+                    python -m venv venv
+                    . venv/bin/activate
                     pip install --upgrade pip
                     pip install -r requirements.txt
                 '''
@@ -37,7 +33,7 @@ pipeline {
             steps {
                 sh '''
                     cd repo
-                    . ${VENV_DIR}/bin/activate
+                    . venv/bin/activate
                     pytest --junitxml=test-results/results.xml
                 '''
             }
