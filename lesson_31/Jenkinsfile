@@ -5,6 +5,10 @@ pipeline {
         }
     }
 
+    options {
+        skipDefaultCheckout(true) // <<< Ось це важливо!
+    }
+
     stages {
         stage('Checkout') {
             steps {
@@ -48,7 +52,7 @@ pipeline {
 
     post {
         always {
-            mail to: 'InsertYour@Mail.Here',
+            mail to: 'testertest7989@gmail.com',
                  subject: "Pipeline ${currentBuild.fullDisplayName} - ${currentBuild.currentResult}",
                  body: "Job result: ${currentBuild.currentResult}\nBuild: ${env.BUILD_URL}"
         }
