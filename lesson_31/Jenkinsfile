@@ -1,0 +1,49 @@
+pipeline {
+    agent any
+
+    environment {
+        VENV_DIR = "${env.WORKSPACE}/venv"
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Install Dependencies') {
+            steps {
+                sh '''
+                    python3 -m venv ${VENV_DIR}
+                    . ${VENV_DIR}/bin/activate
+                    pip install --upgrade pip
+                    pip install -r requirements.txt
+                '''
+            }
+        }
+
+        stage('Run Tests') {
+            steps {
+                sh '''
+                    . ${VENV_DIR}/bin/activate
+                    pytest --junitxml=test-results/results.xml
+                '''
+            }
+        }
+
+        stage('Publish Test Results') {
+            steps {
+                junit 'test-results/results.xml'
+            }
+        }
+    }
+
+    post {
+        always {
+            mail to: 'testertest7989@gmail.com',
+                 subject: "Pipeline ${currentBuild.fullDisplayName} - ${currentBuild.currentResult}",
+                 body: "Job finished. Status: ${currentBuild.currentResult}. See: ${env.BUILD_URL}"
+        }
+    }
+}
