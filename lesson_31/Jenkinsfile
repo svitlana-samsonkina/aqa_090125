@@ -12,14 +12,20 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                checkout scm
+                // Замість "checkout scm"
+                sh '''
+                    git clone https://github.com/svitlana-samsonkina/aqa_090125.git repo
+                    cd repo
+                    git checkout homework31
+                '''
             }
         }
 
         stage('Install Dependencies') {
             steps {
                 sh '''
-                    python3 -m venv ${VENV_DIR}
+                    cd repo
+                    python -m venv ${VENV_DIR}
                     . ${VENV_DIR}/bin/activate
                     pip install --upgrade pip
                     pip install -r requirements.txt
@@ -30,24 +36,25 @@ pipeline {
         stage('Run Tests') {
             steps {
                 sh '''
+                    cd repo
                     . ${VENV_DIR}/bin/activate
                     pytest --junitxml=test-results/results.xml
                 '''
             }
         }
 
-        stage('Publish Test Results') {
+        stage('Publish Results') {
             steps {
-                junit 'test-results/results.xml'
+                junit 'repo/test-results/results.xml'
             }
         }
     }
 
     post {
         always {
-            mail to: 'testertest7989@gmail.com',
+            mail to: 'InsertYour@Mail.Here',
                  subject: "Pipeline ${currentBuild.fullDisplayName} - ${currentBuild.currentResult}",
-                 body: "Job finished. Status: ${currentBuild.currentResult}. See: ${env.BUILD_URL}"
+                 body: "Job result: ${currentBuild.currentResult}\nBuild: ${env.BUILD_URL}"
         }
     }
 }
