@@ -39,7 +39,7 @@ pipeline {
                     cd repo
                     . venv/bin/activate
                     mkdir -p ../test-results
-                    PYTHONPATH=. pytest tests --junitxml=../test-results/results.xml
+                    PYTHONPATH=lesson_31 pytest lesson_31/tests --junitxml=../test-results/results.xml
                 '''
             }
         }
