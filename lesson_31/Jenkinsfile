@@ -46,7 +46,7 @@ pipeline {
 
         stage('Publish Results') {
             steps {
-                junit 'repo/test-results/results.xml'
+                junit 'test-results/results.xml'
             }
         }
     }
