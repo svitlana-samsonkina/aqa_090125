@@ -6,16 +6,17 @@ pipeline {
     }
 
     options {
-        skipDefaultCheckout(true) // <<< Ось це важливо!
+        skipDefaultCheckout(true)
     }
 
-    stage('Run Tests') {
+    stages {
+        stage('Checkout') {
             steps {
                 sh '''
+                    rm -rf repo
+                    git clone https://github.com/svitlana-samsonkina/aqa_090125.git repo
                     cd repo
-                    . venv/bin/activate
-                    mkdir -p ../test-results
-                    PYTHONPATH=. pytest tests --junitxml=../test-results/results.xml
+                    git checkout homework31
                 '''
             }
         }
@@ -37,6 +38,7 @@ pipeline {
                 sh '''
                     cd repo
                     . venv/bin/activate
+                    mkdir -p ../test-results
                     PYTHONPATH=. pytest tests --junitxml=../test-results/results.xml
                 '''
             }
